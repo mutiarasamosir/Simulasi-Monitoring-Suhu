@@ -35,7 +35,6 @@ simulasi-monitoring-suhu/
 
 ## 📊 Arsitektur Sistem
 
-```mermaid
 flowchart LR
     A[Sensor Stream] -->|Insert data suhu| B[(PostgreSQL Database)]
     B --> C[Anomaly Detection]
