@@ -12,12 +12,19 @@ Sistem ini terdiri dari beberapa komponen utama:
 ## 📂 Struktur Proyek
 simulasi-monitoring-suhu/
 │── anomaly.py # Script deteksi anomali
+
 │── db.py # Koneksi dan operasi database
+
 │── docker-compose.yml # Konfigurasi Docker (PostgreSQL + Metabase)
+
 │── init_db.sql # Skrip inisialisasi database
+
 │── requirements.txt # Dependensi Python
+
 │── sensor_stream.py # Simulasi data sensor suhu
+
 │── images/ # Folder berisi gambar/visualisasi
+
 └── README.md # Dokumentasi proyek
 
 
