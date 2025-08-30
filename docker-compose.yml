@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: iot_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: iot_user
+      POSTGRES_PASSWORD: iot_pass
+      POSTGRES_DB: iot_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - iot_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U iot_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  metabase:
+    image: metabase/metabase
+    container_name: iot_metabase
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: iot_db
+      MB_DB_PORT: 5432
+      MB_DB_USER: iot_user
+      MB_DB_PASS: iot_pass
+      MB_DB_HOST: postgres
+    networks:
+      - iot_network
+
+  adminer:
+    image: adminer
+    container_name: iot_adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - iot_network
+
+volumes:
+  pgdata:
+
+networks:
+  iot_network:
+    driver: bridge

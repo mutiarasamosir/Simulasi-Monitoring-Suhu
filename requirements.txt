@@ -1,0 +1,6 @@
+psycopg2-binary==2.9.9         # PostgreSQL database adapter
+sqlalchemy==2.0.30             # ORM untuk akses DB
+pandas==2.2.2                  # Data analysis dan manipulasi
+schedule==1.2.1                # (Opsional) Untuk penjadwalan stream
+python-dotenv==1.0.1           # Untuk konfigurasi dari .env file
+loguru==0.7.2                  # Logging profesional
